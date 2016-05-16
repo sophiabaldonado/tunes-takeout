@@ -67,3 +67,4 @@ build-iPhoneSimulator/
 ./config/secrets.yml
 /config/secrets.yml
 config/secrets.yml
+secrets.yml
