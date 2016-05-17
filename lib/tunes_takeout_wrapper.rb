@@ -2,9 +2,9 @@ class TunesTakeoutWrapper
   BASE_URL = "https://tunes-takeout-api.herokuapp.com/"
   attr_reader :suggestions, :href
 
-  def initialize(data)
-    @suggestions = data["suggestions"]
-    @href = data["href"]
+  def initialize(data=nil)
+    @suggestions = data["suggestions"] if data
+    @href = data["href"] if data
   end
   #
   # def sprite_urls

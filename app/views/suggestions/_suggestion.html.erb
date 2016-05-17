@@ -1,7 +1,5 @@
-<h2>Here Are Your Suggestions</h2>
+<h2>Suggestion</h2>
 
-<% @suggestions.each do |sug| %>
-  <%= sug.food_id %>
-  <%= sug.music_id %>
-  <%= sug.music_type %>
-<% end %>
+<strong>Food Id:</strong> <%= suggestion["food_id"] %></br>
+<strong>Music Id:</strong> <%= suggestion["music_id"] %></br>
+<strong>Music Type:</strong> <%= suggestion["music_type"] %></br>

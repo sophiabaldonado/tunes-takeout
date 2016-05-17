@@ -1,9 +1,9 @@
-require_relative '../../lib/tunestakeoutwrapper'
+# require_relative '../../lib/tunestakeoutwrapper'
 
 class SuggestionsController < ApplicationController
   def index
     # @favorites = # TunesTakeoutWrapper.favorites
-    @tunes_takeout = ::TunesTakeoutWrapper.search("avodaco")
+    @tunes_takeout = ::TunesTakeoutWrapper.search(params["search"])
     @suggestions = @tunes_takeout.suggestions
     # raise
     # @suggestion = TunesTakeoutWrapper.search(params[:query])

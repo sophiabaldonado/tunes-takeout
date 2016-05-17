@@ -1,1 +1,4 @@
-<%= render partial: 'suggestion' %>
+
+<% @suggestions.each do |suggestion| %>
+  <%= render partial: 'suggestion', object: suggestion %>
+<% end %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/auth/:provider/callback' => 'sessions#create'
 
   get '/suggestions' =>  'suggestions#index'
+  post '/suggestions' =>  'suggestions#index'
   get '/favorites' =>  'suggestions#favorites', as: :favorites
   post '/favorite' =>  'suggestions#favorite'
   post '/unfavorite' =>  'suggestions#unfavorite'
