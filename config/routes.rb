@@ -4,6 +4,15 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get '/sign-in' => 'sessions#create', as: :signin
+
+  get '/favorites' =>  'suggestions#favorites', as: :favorites
+  post '/favorite' =>  'suggestions#favorite', as: :favorites
+  post '/unfavorite' =>  'suggestions#unfavorite', as: :favorites
+
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
