@@ -4,11 +4,15 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get '/sign-in' => 'sessions#create', as: :signin
+  get '/sign-in' => 'sessions#new', as: :signin
 
+  # get '/auth/:provider' => 'github'
+  post '/auth/:provider/callback' => 'sessions#create'
+
+  get '/suggestions' =>  'suggestions#index'
   get '/favorites' =>  'suggestions#favorites', as: :favorites
-  post '/favorite' =>  'suggestions#favorite', as: :favorites
-  post '/unfavorite' =>  'suggestions#unfavorite', as: :favorites
+  post '/favorite' =>  'suggestions#favorite'
+  post '/unfavorite' =>  'suggestions#unfavorite'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
