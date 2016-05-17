@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/sign-in' => 'sessions#new', as: :signin
+  delete '/logout' => 'sessions#destroy', as: :logout
 
   # get '/auth/:provider' => 'github'
   post '/auth/:provider/callback' => 'sessions#create'
