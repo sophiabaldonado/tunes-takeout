@@ -10,18 +10,13 @@ class Music
       @image = spotify_object.images.find { |img|
         img["height"] == 300
       } #=> returns a hash
-      @image = @image["url"]
+      @image = @image["url"] #=> returns an array
     end
-
-
   end
 
-  def self.suggested_music(suggestions)
-    suggestions.map { |suggestion|
-      self.search(suggestion["music_id"], suggestion["music_type"])
-    }
+  def self.suggested_music(suggestion)
+    self.search(suggestion["music_id"], suggestion["music_type"])
   end
-
 
   def self.search(id, music_type)
     case music_type
@@ -38,5 +33,4 @@ class Music
     end
       self.new(@music)
   end
-
 end

@@ -9,4 +9,14 @@ class ApplicationController < ActionController::Base
     @user ||= User.find_by(id: session[:user_id])
   end
 
+  def sort_suggestions(raw_suggestions)
+    raw_suggestions.map do |sug|
+      {
+        id: sug["id"],
+        music: Music.suggested_music(sug),
+        food: Music.suggested_music(sug)
+      }
+    end
+  end
+
 end

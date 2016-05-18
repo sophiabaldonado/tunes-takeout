@@ -2,18 +2,13 @@
 
 <strong>Food Id:</strong> <%# suggestion["food_id"] %></br>
 
-<strong>Check out this <%= suggestion.type %>!</strong>
+<strong>Check out this <%= suggestion[:music].type %>!</strong>
   <ul>
-    <li><%= link_to suggestion.name, suggestion.links["spotify"] %></li>
+    <li><%= link_to suggestion[:music].name, suggestion[:music].links["spotify"] %></li>
     <li>
-        <% if suggestion.image %>
-          <li><%= image_tag suggestion.image %></li>
+        <% if suggestion[:music].image %>
+          <li><%= image_tag suggestion[:music].image %></li>
         <% end %>
     </li>
     <li>Maybe I'll have an embedded player here...</li>
   </ul>
-
-<!-- Includes name of the music item, linking to appropriate Spotify page
-Includes type of the music item (artist, album, track, or playlist)
-Includes photo/album cover of the music item
-Includes embedded Spotify player if appropriate (optional) -->

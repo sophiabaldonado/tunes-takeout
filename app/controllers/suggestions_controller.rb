@@ -4,10 +4,9 @@ class SuggestionsController < ApplicationController
   def index
     # @favorites = # TunesTakeoutWrapper.favorites
     @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params["search"]).suggestions
-    @music_suggestions = Music.suggested_music(@tunes_takeout_suggestions)
+    @suggestions = sort_suggestions(@tunes_takeout_suggestions)
 
-
-    if @music_suggestions.nil?
+    if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
     else
       render :index
