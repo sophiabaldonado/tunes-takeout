@@ -2,4 +2,21 @@
 
 <strong>Suggestion Id:</strong> <%= suggestion["id"] %></br>
 <strong>Food Id:</strong> <%= suggestion["food_id"] %></br>
-<strong>Spotify Suggestion:</strong> <%= suggested_music(suggestion["music_id"], suggestion["music_type"]) %></br>
+
+<% music = suggested_music(suggestion["music_id"], suggestion["music_type"]) %></br>
+
+<strong>Check out this <%= music.type %>!</strong>
+  <ul>
+    <li><%= link_to music.name, music.external_urls["spotify"] %></li>
+    <li>
+        <% if music.type != "track" %>
+          <li><%= image_tag music.images.find { |img| img["height"] == 300 }["url"] %></li>
+        <% end %>
+    </li>
+    <li>Maybe I'll have an embedded player here...</li>
+  </ul>
+
+<!-- Includes name of the music item, linking to appropriate Spotify page
+Includes type of the music item (artist, album, track, or playlist)
+Includes photo/album cover of the music item
+Includes embedded Spotify player if appropriate (optional) -->
