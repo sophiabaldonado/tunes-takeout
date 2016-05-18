@@ -1,16 +1,13 @@
 <h2>Suggestion</h2>
 
-<strong>Suggestion Id:</strong> <%= suggestion["id"] %></br>
-<strong>Food Id:</strong> <%= suggestion["food_id"] %></br>
+<strong>Food Id:</strong> <%# suggestion["food_id"] %></br>
 
-<% music = suggested_music(suggestion["music_id"], suggestion["music_type"]) %></br>
-
-<strong>Check out this <%= music.type %>!</strong>
+<strong>Check out this <%= suggestion.type %>!</strong>
   <ul>
-    <li><%= link_to music.name, music.external_urls["spotify"] %></li>
+    <li><%= link_to suggestion.name, suggestion.links["spotify"] %></li>
     <li>
-        <% if music.type != "track" %>
-          <li><%= image_tag music.images.find { |img| img["height"] == 300 }["url"] %></li>
+        <% if suggestion.image %>
+          <li><%= image_tag suggestion.image %></li>
         <% end %>
     </li>
     <li>Maybe I'll have an embedded player here...</li>

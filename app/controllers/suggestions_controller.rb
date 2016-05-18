@@ -3,17 +3,15 @@
 class SuggestionsController < ApplicationController
   def index
     # @favorites = # TunesTakeoutWrapper.favorites
-    @tunes_takeout = TunesTakeoutWrapper.search(params["search"])
-    @suggestions = @tunes_takeout.suggestions
+    @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params["search"]).suggestions
+    @music_suggestions = Music.suggested_music(@tunes_takeout_suggestions)
 
 
-    if @suggestions.nil?
+    if @music_suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
     else
       render :index
     end
-    # raise
-    # @suggestion = TunesTakeoutWrapper.search(params[:query])
   end
 
   def favorites
