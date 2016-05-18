@@ -1,5 +1,5 @@
 <h2>Suggestion</h2>
 
+<strong>Suggestion Id:</strong> <%= suggestion["id"] %></br>
 <strong>Food Id:</strong> <%= suggestion["food_id"] %></br>
-<strong>Music Id:</strong> <%= suggestion["music_id"] %></br>
-<strong>Music Type:</strong> <%= suggestion["music_type"] %></br>
+<strong>Spotify Suggestion:</strong> <%= suggested_music(suggestion["music_id"], suggestion["music_type"]) %></br>
