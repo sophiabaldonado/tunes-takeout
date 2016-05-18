@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: :logout
 
   # get '/auth/:provider' => 'github'
-  post '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create'
 
   get '/suggestions' =>  'suggestions#index'
   post '/suggestions' =>  'suggestions#index'

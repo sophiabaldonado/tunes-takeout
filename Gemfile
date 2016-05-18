@@ -26,6 +26,11 @@ gem 'httparty'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'omniauth'
+gem 'omniauth-oauth2', '~> 1.3.1'
+gem 'yelp'
+gem 'rspotify'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
