@@ -24,3 +24,8 @@
     </div>
   </li>
 </ul>
+
+<%= form_tag favorite_path, method: "post" do %>
+  <%= hidden_field :suggestion_id, "post", {value: suggestion[:id]} %>
+  <%= submit_tag "Fav" %>
+<% end %>

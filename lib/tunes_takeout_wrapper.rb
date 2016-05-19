@@ -14,4 +14,11 @@ class TunesTakeoutWrapper
     self.new(data)
   end
 
+  def self.favorite(user_id, suggestion_id)
+    HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { "suggestion": suggestion_id })
+  end
+
+  def unfavorite(suggestion)
+  end
+
 end

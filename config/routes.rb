@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get '/suggestions' =>  'suggestions#index'
   post '/suggestions' =>  'suggestions#index'
   get '/favorites' =>  'suggestions#favorites', as: :favorites
-  post '/favorite' =>  'suggestions#favorite'
-  post '/unfavorite' =>  'suggestions#unfavorite'
+  post '/favorite' =>  'suggestions#favorite', as: :favorite
+  post '/unfavorite' =>  'suggestions#unfavorite', as: :unfavorite
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
