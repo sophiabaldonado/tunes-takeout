@@ -15,15 +15,17 @@ class SuggestionsController < ApplicationController
   end
 
   def favorites
-
+    user_id = current_user.uid
+    @fav_suggestions = TunesTakeoutWrapper.favorites(user_id).suggestions
+    @suggestions = sort_suggestions(@fav_suggestions)
+    render :index
   end
 
   def favorite
     @suggestion_id = params[:suggestion_id]
     TunesTakeoutWrapper.favorite(@user_id, @suggestion_id)
 
-    @tunes_takeout_suggestions = TunesTakeoutWrapper.search($search).suggestions
-    @suggestions = sort_suggestions(@tunes_takeout_suggestions)
+    # @tunes_takeout_suggestions = TunesTakeoutWrapper.search($search).suggestions
 
     # redirect_to suggestions_path
     render :index
