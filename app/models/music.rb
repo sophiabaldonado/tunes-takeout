@@ -1,13 +1,13 @@
 class Music
   attr_reader :name, :type, :links, :image
 
-  def initialize(spotify_object)
+  def initialize(spotify)
     # idk
-    @name = spotify_object.name
-    @type = spotify_object.type
-    @links = spotify_object.external_urls
+    @name = spotify.name
+    @type = spotify.type
+    @links = spotify.external_urls
     unless @type == "track"
-      @image = spotify_object.images.find { |img|
+      @image = spotify.images.find { |img|
         img["height"] == 300
       } #=> returns a hash
       @image = @image["url"] #=> returns an array
