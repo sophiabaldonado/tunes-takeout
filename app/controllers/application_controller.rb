@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       {
         id: sug["id"],
         music: Music.suggested_music(sug),
-        food: Music.suggested_music(sug)
+        food: Food.suggested_food(sug)
       }
     end
   end

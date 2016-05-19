@@ -1,6 +1,13 @@
 <h2>Suggestion</h2>
 
-<strong>Food Id:</strong> <%# suggestion["food_id"] %></br>
+<strong>Grab some grub!</strong>
+<ul>
+  <li><%= link_to suggestion[:food].name, suggestion[:food].link %></li>
+  <li><%= image_tag suggestion[:food].image %></li>
+  <li><%= image_tag suggestion[:food].rating[:stars] %><%= suggestion[:food].rating[:rating] %></li>
+  <li><%= suggestion[:food].phone %></li>
+  <li><%= suggestion[:food].address.address %></li>
+</ul>
 
 <strong>Check out this <%= suggestion[:music].type %>!</strong>
   <ul>

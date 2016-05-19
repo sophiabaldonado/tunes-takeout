@@ -13,12 +13,12 @@ class Food
     }
   end
 
-  def suggested_food(suggestion)
+  def self.suggested_food(suggestion)
     self.search(suggestion["food_id"])
   end
 
   def self.search(food_id)
-    business = Yelp.client.business(food_id).business
+    business = Yelp.client.business(food_id.parameterize).business
     self.new(business)
   end
 end
