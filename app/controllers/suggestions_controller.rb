@@ -5,6 +5,7 @@ class SuggestionsController < ApplicationController
     # $search ||= params["search"]
     # @favorites = # TunesTakeoutWrapper.favorites
     @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params[:search], params[:limit]).suggestions
+    # @tunes_takeout_suggestions = fake_suggestion
     @suggestions = sort_suggestions(@tunes_takeout_suggestions)
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"

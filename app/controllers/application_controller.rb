@@ -19,4 +19,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def fake_suggestion
+  # {
+  #   "href":"https://tunes-takeout-api.herokapp.com/v1/suggestions/VzoikPLQUk2WS7xp",
+  #   "suggestion":{
+  #     "id":"VzoikPLQUk2WS7xp",
+  #     "food_id":"ohana-seattle-2",
+  #     "music_id":"0BjkSCLEHlcsogSeDim01W",
+  #     "music_type":"track"
+  #   }
+  # }
+  # end
+
 end
