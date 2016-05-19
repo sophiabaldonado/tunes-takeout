@@ -8,7 +8,11 @@ class TunesTakeoutWrapper
   end
 
   def self.search(query, limit=10, seed=nil)
-    data = HTTParty.get(BASE_URL + "/v1/suggestions/search?query=#{query}").parsed_response
+    if limit
+      data = HTTParty.get(BASE_URL + "/v1/suggestions/search?query=#{query}&limit=#{limit}").parsed_response
+    else
+      data = HTTParty.get(BASE_URL + "/v1/suggestions/search?query=#{query}").parsed_response
+    end
 
     # return an instance of pokemon for that id
     self.new(data)
