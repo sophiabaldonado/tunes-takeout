@@ -1,3 +1,5 @@
+require 'json'
+
 class TunesTakeoutWrapper
   BASE_URL = "https://tunes-takeout-api.herokuapp.com/"
   attr_reader :suggestions, :href
@@ -19,7 +21,7 @@ class TunesTakeoutWrapper
   end
 
   def self.favorite(user_id, suggestion_id)
-    HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { "suggestion": suggestion_id })
+    HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
   end
 
   def unfavorite(suggestion)
