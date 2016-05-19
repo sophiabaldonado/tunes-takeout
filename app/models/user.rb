@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
     if !user.nil?
       return user
     else
-      user = User.new(name: auth_hash["info"]["display_name"], uid: auth_hash["info"]["id"], provider: auth_hash[:provider])
+      user = User.new
+      user.name = auth_hash["info"]["display_name"]
+      user.uid = auth_hash["info"]["id"]
+      user.provider = auth_hash[:provider]
+      user.photo_url = auth_hash["info"]["images"][0]["url"]
 
       if user.save
         return user
