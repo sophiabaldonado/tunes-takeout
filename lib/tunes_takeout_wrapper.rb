@@ -28,6 +28,12 @@ class TunesTakeoutWrapper
     self.new(data)
   end
 
+  def self.top_twenty
+    data = HTTParty.get(BASE_URL + "/v1/suggestions/top").parsed_response
+    data["suggestions"]
+    #=> returns array
+  end
+
   def self.favorites(user_id)
     data = HTTParty.get(BASE_URL + "/v1/users/#{user_id}/favorites").parsed_response
     data["suggestions"]
@@ -36,7 +42,6 @@ class TunesTakeoutWrapper
 
   def self.favorite(user_id, suggestion_id)
     HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
-    self.new(data)
   end
 
   def unfavorite(suggestion)

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'home#index'
+  root 'suggestions#index'
 
   get '/sign-in' => 'sessions#new', as: :signin
   delete '/logout' => 'sessions#destroy', as: :logout
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   # get '/auth/:provider' => 'github'
   get '/auth/:provider/callback' => 'sessions#create'
 
-  get '/suggestions' =>  'suggestions#index'
-  post '/suggestions' =>  'suggestions#index'
+  get '/suggestions' =>  'suggestions#show'
+  post '/suggestions' =>  'suggestions#show'
   get '/favorites' =>  'suggestions#favorites', as: :favorites
   post '/favorite' =>  'suggestions#favorite', as: :favorite
   post '/unfavorite' =>  'suggestions#unfavorite', as: :unfavorite

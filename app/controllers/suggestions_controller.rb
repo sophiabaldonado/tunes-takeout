@@ -1,8 +1,12 @@
-# require_relative '../../lib/tunestakeoutwrapper'
-
 class SuggestionsController < ApplicationController
+
   def index
-    # $search ||= params["search"]
+    @top_suggestions_ids = TunesTakeoutWrapper.top_twenty
+    @top_suggestions = TunesTakeoutWrapper.find_many(@top_suggestions_ids).suggestions
+    @suggestions = sort_suggestions(@top_suggestions)
+  end
+
+  def show
     # @favorites = # TunesTakeoutWrapper.favorites
     @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params[:search], params[:limit]).suggestions
     # @tunes_takeout_suggestions = fake_suggestion
@@ -10,7 +14,7 @@ class SuggestionsController < ApplicationController
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
     else
-      render :index
+      render :show
     end
   end
 
@@ -20,7 +24,7 @@ class SuggestionsController < ApplicationController
     @fav_suggestions = TunesTakeoutWrapper.find_many(@fav_suggestions_ids).suggestions
     @suggestions = sort_suggestions(@fav_suggestions)
 
-    render :index
+    render :show
   end
 
   def favorite
@@ -32,7 +36,7 @@ class SuggestionsController < ApplicationController
     @suggestions = sort_suggestions(@tunes_takeout_suggestions)
 
     # redirect_to suggestions_path
-    render :index
+    render :show
   end
 
   def unfavorite
