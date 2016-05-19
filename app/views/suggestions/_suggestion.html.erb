@@ -25,14 +25,16 @@
   </li>
 </ul>
 
-<% if user_favorited?(suggestion[:id]) %>
-  <%= form_tag favorite_path(params), method: "delete" do %>
-    <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-    <%= submit_tag "UnFav" %>
-  <% end %>
-<% else %>
-  <%= form_tag favorite_path(params), method: "post" do %>
-    <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-    <%= submit_tag "Fav" %>
+<% if current_user %>
+  <% if user_favorited?(suggestion[:id]) %>
+    <%= form_tag favorite_path(params), method: "delete" do %>
+      <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+      <%= submit_tag "UnFav" %>
+    <% end %>
+  <% else %>
+    <%= form_tag favorite_path(params), method: "post" do %>
+      <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+      <%= submit_tag "Fav" %>
+    <% end %>
   <% end %>
 <% end %>
