@@ -16,8 +16,10 @@ class SuggestionsController < ApplicationController
 
   def favorites
     user_id = current_user.uid
-    @fav_suggestions = TunesTakeoutWrapper.favorites(user_id).suggestions
+    @fav_suggestions_ids = TunesTakeoutWrapper.favorites(user_id) #=> returns array of ids
+    @fav_suggestions = TunesTakeoutWrapper.find_many(@fav_suggestions_ids).suggestions
     @suggestions = sort_suggestions(@fav_suggestions)
+
     render :index
   end
 

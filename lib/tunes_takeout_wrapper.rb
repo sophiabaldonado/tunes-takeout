@@ -20,13 +20,23 @@ class TunesTakeoutWrapper
     self.new(data)
   end
 
+  def self.find_many(ids_array)
+    data = ids_array.map do |id|
+      HTTParty.get(BASE_URL + "/v1/suggestions/#{id}").parsed_response["suggestion"]
+    end
+    data = { "suggestions" => data }
+    self.new(data)
+  end
+
   def self.favorites(user_id)
     data = HTTParty.get(BASE_URL + "/v1/users/#{user_id}/favorites").parsed_response
-    self.new(data)
+    data["suggestions"]
+    #=> returns array
   end
 
   def self.favorite(user_id, suggestion_id)
     HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
+    self.new(data)
   end
 
   def unfavorite(suggestion)
