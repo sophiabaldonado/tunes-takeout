@@ -1,5 +1,5 @@
 class Music
-  attr_reader :name, :type, :links, :image
+  attr_reader :name, :type, :links, :image, :embed
 
   def initialize(spotify)
     # idk
@@ -12,6 +12,7 @@ class Music
       } #=> returns a hash
       @image = @image["url"] #=> returns an array
     end
+    @embed = spotify.uri
   end
 
   def self.suggested_music(suggestion)

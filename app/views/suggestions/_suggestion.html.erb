@@ -1,21 +1,28 @@
+<% food = suggestion[:food] %>
+<% music = suggestion[:music] %>
+
 <h2>Suggestion</h2>
 
 <strong>Grab some grub!</strong>
 <ul>
-  <li><%= link_to suggestion[:food].name, suggestion[:food].link %></li>
-  <li><%= image_tag suggestion[:food].image %></li>
-  <li><%= image_tag suggestion[:food].rating[:stars] %><%= suggestion[:food].rating[:rating] %></li>
-  <li><%= suggestion[:food].phone %></li>
-  <li><%= suggestion[:food].address.address %></li>
+  <li><%= link_to food.name, food.link %></li>
+  <li><%= image_tag food.image %></li>
+  <li><%= image_tag food.rating[:stars] %><%= food.rating[:rating] %></li>
+  <li><%= food.phone %></li>
+  <li><%= food.address.address %></li>
 </ul>
 
-<strong>Check out this <%= suggestion[:music].type %>!</strong>
-  <ul>
-    <li><%= link_to suggestion[:music].name, suggestion[:music].links["spotify"] %></li>
-    <li>
-        <% if suggestion[:music].image %>
-          <li><%= image_tag suggestion[:music].image %></li>
-        <% end %>
-    </li>
-    <li>Maybe I'll have an embedded player here...</li>
-  </ul>
+<strong>Check out this <%= music.type %>!</strong>
+<ul>
+  <li><%= link_to music.name, music.links["spotify"] %></li>
+  <li>
+      <% if music.image %>
+        <li><%= image_tag music.image %></li>
+      <% end %>
+  </li>
+  <li>
+    <div class='embed-container'>
+      <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
+    </div>
+  </li>
+</ul>
