@@ -9,8 +9,12 @@
 <body>
   <header>
     <nav>
-      <%= link_to 'Log In Through Spotify', '/auth/spotify' unless current_user %>
-      <%= link_to 'Log Out', logout_path, method: :delete if current_user %>
+      <%= link_to 'Home', root_path %>
+      <% if current_user %>
+        <%= link_to 'Log Out', logout_path, method: :delete %>
+        <%= link_to 'My Favorites', favorites_path %>
+      <% end %>
+        <%= link_to 'Log In Through Spotify', '/auth/spotify' unless current_user %>
     </nav>
     <% if current_user %>
       <%= link_to "https://open.spotify.com/user/#{current_user.uid}" do %>
