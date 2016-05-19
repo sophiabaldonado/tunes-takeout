@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post '/suggestions' =>  'suggestions#show'
   get '/favorites' =>  'suggestions#favorites', as: :favorites
   post '/favorite' =>  'suggestions#favorite', as: :favorite
-  post '/unfavorite' =>  'suggestions#unfavorite', as: :unfavorite
+  delete '/favorite' =>  'suggestions#unfavorite'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users

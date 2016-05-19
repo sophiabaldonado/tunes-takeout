@@ -44,7 +44,8 @@ class TunesTakeoutWrapper
     HTTParty.post(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
   end
 
-  def unfavorite(suggestion)
+  def self.unfavorite(user_id, suggestion_id)
+    HTTParty.delete(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
   end
 
 end

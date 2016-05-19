@@ -1,16 +1,13 @@
 class SuggestionsController < ApplicationController
 
   def index
-    @top_suggestions_ids = TunesTakeoutWrapper.top_twenty
-    @top_suggestions = TunesTakeoutWrapper.find_many(@top_suggestions_ids).suggestions
-    @suggestions = sort_suggestions(@top_suggestions)
+    choose_correct_suggestions
   end
 
   def show
     # @favorites = # TunesTakeoutWrapper.favorites
-    @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params[:search], params[:limit]).suggestions
     # @tunes_takeout_suggestions = fake_suggestion
-    @suggestions = sort_suggestions(@tunes_takeout_suggestions)
+    choose_correct_suggestions
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
     else
@@ -31,16 +28,16 @@ class SuggestionsController < ApplicationController
     @suggestion_id = params[:suggestion_id]["suggestion_id"]
     @user_id = current_user.uid
     TunesTakeoutWrapper.favorite(@user_id, @suggestion_id)
-
-    @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params[:search], params[:limit]).suggestions
-    @suggestions = sort_suggestions(@tunes_takeout_suggestions)
-
-    # redirect_to suggestions_path
-    render :show
+    choose_correct_suggestions
+    render current_page
   end
 
   def unfavorite
-
+    @suggestion_id = params[:suggestion_id]["suggestion_id"]
+    @user_id = current_user.uid
+    TunesTakeoutWrapper.unfavorite(@user_id, @suggestion_id)
+    choose_correct_suggestions
+    render current_page
   end
 
   private

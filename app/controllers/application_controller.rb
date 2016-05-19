@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     @user ||= User.find_by(id: session[:user_id])
   end
 
+  def current_page
+    request.env['PATH_INFO']
+  end
+
   def sort_suggestions(raw_suggestions)
     raw_suggestions.map do |sug|
       {
