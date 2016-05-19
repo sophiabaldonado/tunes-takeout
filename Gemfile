@@ -31,6 +31,7 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'yelp'
 gem 'rspotify'
 
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -45,6 +46,7 @@ group :development, :test do
   gem 'minitest-vcr'
   gem 'minitest-reporters'
   gem 'webmock'
+  gem 'simplecov'
 
 end
 
