@@ -2,9 +2,9 @@
 
 class SuggestionsController < ApplicationController
   def index
-    $search ||= params["search"]
+    # $search ||= params["search"]
     # @favorites = # TunesTakeoutWrapper.favorites
-    @tunes_takeout_suggestions = TunesTakeoutWrapper.search($search, params[:limit]).suggestions
+    @tunes_takeout_suggestions = TunesTakeoutWrapper.search(params[:search], params[:limit]).suggestions
     @suggestions = sort_suggestions(@tunes_takeout_suggestions)
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
@@ -21,8 +21,8 @@ class SuggestionsController < ApplicationController
     @suggestion_id = params[:suggestion_id]
     TunesTakeoutWrapper.favorite(@user_id, @suggestion_id)
 
-    @tunes_takeout_suggestions = TunesTakeoutWrapper.search($search).suggestions
-    @suggestions = sort_suggestions(@tunes_takeout_suggestions)
+    # @tunes_takeout_suggestions = TunesTakeoutWrapper.search().suggestions
+    # @suggestions = sort_suggestions(@tunes_takeout_suggestions)
 
     # redirect_to suggestions_path
     render :index
