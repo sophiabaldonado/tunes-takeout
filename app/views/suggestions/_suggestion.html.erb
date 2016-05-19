@@ -15,11 +15,9 @@
 <strong>Check out this <%= music.type %>!</strong>
 <ul>
   <li><%= link_to music.name, music.links["spotify"] %></li>
-  <li>
-      <% if music.image %>
-        <li><%= image_tag music.image %></li>
-      <% end %>
-  </li>
+    <% if music.image %>
+      <li><%= image_tag music.image %></li>
+    <% end %>
   <li>
     <div class='embed-container'>
       <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>

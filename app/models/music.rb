@@ -6,9 +6,9 @@ class Music
     @name = spotify.name
     @type = spotify.type
     @links = spotify.external_urls
-    unless @type == "track"
+    unless @type == "track" || spotify.images.empty?
       @image = spotify.images.find { |img|
-        img["height"] == 300
+        img["width"] == 300
       } #=> returns a hash
       @image = @image["url"] #=> returns an array
     end
