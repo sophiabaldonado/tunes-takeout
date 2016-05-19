@@ -7,10 +7,7 @@ class Music
     @type = spotify.type
     @links = spotify.external_urls
     unless @type == "track" || spotify.images.empty?
-      @image = spotify.images.find { |img|
-        img["width"] == 300
-      } #=> returns a hash
-      @image = @image["url"] #=> returns an array
+      @image = spotify.images[1]["url"]
     end
     @embed = spotify.uri
   end
