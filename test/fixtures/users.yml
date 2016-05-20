@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  uid: MyString
-  provider: MyString
+known_user:
+  name: known user
+  uid: known_user
+  provider: spotify
+  photo_url: http://images.clipartpanda.com/cute-dinosaur-9f906fb381d0224fcba70da266293035.png
 
 two:
   name: MyString

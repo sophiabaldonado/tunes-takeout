@@ -3,9 +3,25 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   def setup
     # @known = OmniAuth.config.mock_auth[:spotify_known]
-    @known = { "provider" => 'spotify', "info" => { "id" => "known_user", "display_name" => "known user" } }
-    @unknown = OmniAuth.config.mock_auth[:spotify_unknown]
-    @unknown_with_uid = OmniAuth.config.mock_auth[:spotify_uid]
+    @known = {
+      "provider" => 'spotify',
+      "info" => { "id" => "known_user", "display_name" => "known user",
+        "images" => ["url" => "http://images.clipartpanda.com/cute-dinosaur-9f906fb381d0224fcba70da266293035.png"]
+       }
+    }
+    @unknown = {
+      "provider" => 'spotify',
+      "info" => { "id" => "unknown_user", "display_name" => "known user",
+        "images" => ["url" => "http://images.clipartpanda.com/cute-dinosaur-9f906fb381d0224fcba70da266293035.png"]
+      }
+    }
+    @unknown_with_uid = {
+      "provider" => 'spotify',
+      "uid" => "top_id",
+      "info" => { "id" => "unknown_user", "display_name" => "known user",
+        "images" => []
+      }
+    }
   end
 
   test "can find an existing user given an oauth spotify hash" do
@@ -29,4 +45,5 @@ class UserTest < ActiveSupport::TestCase
   test "prefers a top-level uid over a nested id when creating an oauth user" do
     user = User.find_or_create_from_omniauth @unknown_with_uid
     assert_equal @unknown_with_uid['uid'], user.uid
-  endend
+  end
+end
