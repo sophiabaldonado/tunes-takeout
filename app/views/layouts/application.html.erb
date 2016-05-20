@@ -17,6 +17,7 @@
         <%= link_to 'Log In Through Spotify', '/auth/spotify' unless current_user %>
     </nav>
     <% if current_user %>
+    <%# raise %>
       <%= link_to "https://open.spotify.com/user/#{current_user.uid}" do %>
         <p><%= current_user.name %></p>
         <%= image_tag current_user.photo_url %>

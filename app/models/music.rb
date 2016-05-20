@@ -2,7 +2,6 @@ class Music
   attr_reader :name, :type, :links, :image, :embed
 
   def initialize(spotify)
-    # idk
     @name = spotify.name
     @type = spotify.type
     @links = spotify.external_urls
@@ -17,18 +16,17 @@ class Music
   end
 
   def self.search(id, music_type)
-    case music_type
+    music = case music_type
     when "artist"
-      @music = RSpotify::Artist.find(id)
+      RSpotify::Artist.find(id)
     when "album"
-      @music = RSpotify::Album.find(id)
-    when "playlist"
-      @music = RSpotify::Playlist.find(id)
+      RSpotify::Album.find(id)
     when "track"
-      @music = RSpotify::Track.find(id)
+      RSpotify::Track.find(id)
     else
-      @music = nil
+      nil
     end
-      self.new(@music)
+
+    self.new(music)
   end
 end

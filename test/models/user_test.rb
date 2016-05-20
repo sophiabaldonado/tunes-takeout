@@ -2,7 +2,6 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    # @known = OmniAuth.config.mock_auth[:spotify_known]
     @known = {
       "provider" => 'spotify',
       "info" => { "id" => "known_user", "display_name" => "known user",
@@ -11,14 +10,14 @@ class UserTest < ActiveSupport::TestCase
     }
     @unknown = {
       "provider" => 'spotify',
-      "info" => { "id" => "unknown_user", "display_name" => "known user",
+      "info" => { "id" => "unknown_user", "display_name" => "unknown user",
         "images" => ["url" => "http://images.clipartpanda.com/cute-dinosaur-9f906fb381d0224fcba70da266293035.png"]
       }
     }
     @unknown_with_uid = {
       "provider" => 'spotify',
       "uid" => "top_id",
-      "info" => { "id" => "unknown_user", "display_name" => "known user",
+      "info" => { "id" => "unknown_user", "display_name" => "unknown user",
         "images" => []
       }
     }

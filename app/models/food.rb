@@ -5,7 +5,7 @@ class Food
     @name = business.name
     @link = business.url
     @phone = business.display_phone
-    @address = business.location
+    @address = business.location #=> hash of arrays
     @image = business.image_url
     @rating = {
       rating: business.rating,

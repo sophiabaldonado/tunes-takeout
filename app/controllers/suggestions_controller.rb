@@ -1,13 +1,11 @@
 class SuggestionsController < ApplicationController
-
   def index
     choose_correct_suggestions
   end
 
   def show
-    # @favorites = # TunesTakeoutWrapper.favorites
-    # @tunes_takeout_suggestions = fake_suggestion
     choose_correct_suggestions
+
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
     else
@@ -17,25 +15,25 @@ class SuggestionsController < ApplicationController
 
   def favorites
     user_id = current_user.uid
-    @fav_suggestions_ids = TunesTakeoutWrapper.favorites(user_id) #=> returns array of ids
-    @fav_suggestions = TunesTakeoutWrapper.find_many(@fav_suggestions_ids).suggestions
-    @suggestions = sort_suggestions(@fav_suggestions)
+    fav_suggestions_ids = TunesTakeoutWrapper.favorites(user_id) #=> returns array of ids
+    fav_suggestions = TunesTakeoutWrapper.find_many(fav_suggestions_ids).suggestions
+    @suggestions = transform_suggestions(fav_suggestions)
 
     render :show
   end
 
   def favorite
-    @suggestion_id = params[:suggestion_id]["suggestion_id"]
-    @user_id = current_user.uid
-    TunesTakeoutWrapper.favorite(@user_id, @suggestion_id)
+    suggestion_id = params[:suggestion_id]["suggestion_id"]
+    user_id = current_user.uid
+    TunesTakeoutWrapper.favorite(user_id, suggestion_id)
     choose_correct_suggestions
     render current_page
   end
 
   def unfavorite
-    @suggestion_id = params[:suggestion_id]["suggestion_id"]
-    @user_id = current_user.uid
-    TunesTakeoutWrapper.unfavorite(@user_id, @suggestion_id)
+    suggestion_id = params[:suggestion_id]["suggestion_id"]
+    user_id = current_user.uid
+    TunesTakeoutWrapper.unfavorite(user_id, suggestion_id)
     choose_correct_suggestions
     render current_page
   end
@@ -43,6 +41,40 @@ class SuggestionsController < ApplicationController
   private
   def search_tunes_params
     params.permit[:search]
+  end
+
+  def transform_suggestions(raw_suggestions)
+    raw_suggestions.map do |sug|
+      {
+        id: sug["id"],
+        music: Music.suggested_music(sug),
+        food: Food.suggested_food(sug)
+      }
+    end
+  end
+
+  def choose_correct_suggestions
+    search, limit = params[:search], params[:limit]
+    if search
+      tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
+      @suggestions = transform_suggestions(tunes_takeout_suggestions)
+    else
+      top_suggestions_ids = TunesTakeoutWrapper.top_twenty
+      top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
+      @suggestions = transform_suggestions(top_suggestions)
+    end
+  end
+
+  def fake_suggestions
+  {
+    "href":"https://tunes-takeout-api.herokapp.com/v1/suggestions/VzoikPLQUk2WS7xp",
+    "suggestion":{
+      "id":"VzoikPLQUk2WS7xp",
+      "food_id":"ohana-seattle-2",
+      "music_id":"0BjkSCLEHlcsogSeDim01W",
+      "music_type":"track"
+    }
+  }
   end
 
 end

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/favorite' =>  'suggestions#favorite', as: :favorite
   delete '/favorite' =>  'suggestions#unfavorite'
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:create, :destroy]
   resources :users
 
   # You can have the root of your site routed with "root"
