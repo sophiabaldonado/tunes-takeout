@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   root 'suggestions#index'
 
-  get '/sign-in' => 'sessions#new', as: :signin
   delete '/logout' => 'sessions#destroy', as: :logout
-
-  # get '/auth/:provider' => 'github'
   get '/auth/:provider/callback' => 'sessions#create'
 
   get '/suggestions' =>  'suggestions#show'
