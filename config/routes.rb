@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   root 'suggestions#index'
 
   delete '/logout' => 'sessions#destroy', as: :logout
-
   get '/auth/:provider/callback' => 'sessions#create'
 
-  get '/suggestions' =>  'suggestions#show'
+  get '/suggestions'  =>  'suggestions#show'
   post '/suggestions' =>  'suggestions#show'
-  get '/favorites' =>  'suggestions#favorites', as: :favorites
-  post '/favorite' =>  'suggestions#favorite', as: :favorite
-  delete '/favorite' =>  'suggestions#unfavorite'
+  get '/favorites'    =>  'suggestions#favorites', as: :favorites
+  post '/favorite'    =>  'suggestions#favorite', as: :favorite
+  delete '/favorite'  =>  'suggestions#unfavorite'
 
   resources :sessions, only: [:create, :destroy]
 

@@ -1,3 +1,5 @@
+require 'rspotify'
+
 class Music
   attr_reader :name, :type, :links, :image, :embed
 

@@ -1,3 +1,5 @@
+require 'yelp'
+
 class Food
   attr_reader :name, :link, :phone, :address, :image, :rating
 
