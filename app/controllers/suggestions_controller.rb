@@ -1,4 +1,6 @@
 class SuggestionsController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
+
   def index
     choose_correct_suggestions
   end
