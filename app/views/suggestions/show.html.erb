@@ -1,3 +1,5 @@
-<% @suggestions.each do |suggestion| %>
-    <%= render partial: 'suggestion', object: suggestion %>
-<% end %>
+<div class="row marketing">
+  <% @suggestions.each do |suggestion| %>
+      <%= render partial: 'suggestion', object: suggestion %>
+  <% end %>
+</div>

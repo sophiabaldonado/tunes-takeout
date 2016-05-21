@@ -1,38 +1,42 @@
 <% food = suggestion[:food] %>
 <% music = suggestion[:music] %>
 
-<strong>Grab some grub!</strong>
-<ul>
-  <li><%= link_to food.name, food.link %></li>
-  <li><%= image_tag food.image %></li>
-  <li><%= image_tag food.rating[:stars] %><%= food.rating[:rating] %></li>
-  <li><%= food.phone %></li>
-  <li><%= food.address.address %></li>
-</ul>
-
-<strong>Check out this <%= music.type %>!</strong>
-<ul>
-  <li><%= link_to music.name, music.links["spotify"] %></li>
-    <% if music.image %>
-      <li><%= image_tag music.image %></li>
+<div class="col-lg-4">
+    <%= image_tag food.image, class: "img-circle" %>
+    <h2><%= link_to food.name, food.link %></h2>
+    <%= image_tag food.rating[:stars] %><%= food.rating[:rating] %>
+    <p><%= link_to food.phone, tel:food.phone %></p>
+    <% if food.address.cross_streets %>
+      <div class="address"><%= food.address.cross_streets %></div>
+    <% else %>
+      <div class="address">
+        <% food.address.display_address.each do |add| %>
+          <p><%= add %></p>
+        <% end %>
+      </div>
     <% end %>
-  <li>
-    <div class='embed-container'>
-      <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
-    </div>
-  </li>
-</ul>
+    <%= link_to music.name, music.links["spotify"] %>
+      <% if music.image %>
+        <%# image_tag music.image %>
+      <% end %>
 
-<% if current_user %>
-  <% if user_favorited?(suggestion[:id]) %>
-    <%= form_tag favorite_path(params), method: "delete" do %>
-      <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-      <%= submit_tag "UnFav" %>
-    <% end %>
-  <% else %>
-    <%= form_tag favorite_path(params), method: "post" do %>
-      <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-      <%= submit_tag "Fav" %>
+      <div class='embed-container'>
+        <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
+      </div>
+
+  </ul>
+
+  <% if current_user %>
+    <% if user_favorited?(suggestion[:id]) %>
+      <%= form_tag favorite_path(params), method: "delete" do %>
+        <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+        <%= submit_tag "UnFav" %>
+      <% end %>
+    <% else %>
+      <%= form_tag favorite_path(params), method: "post" do %>
+        <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+        <%= submit_tag "Fav" %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>

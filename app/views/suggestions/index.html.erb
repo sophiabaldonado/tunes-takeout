@@ -11,6 +11,8 @@
   <%= submit_tag("Search", class:"btn btn-lg btn-primary btn-block") %>
 <% end %>
 
-<% @suggestions.each do |suggestion| %>
-  <%= render partial: 'suggestion', object: suggestion %>
-<% end %>
+<div class="row marketing">
+  <% @suggestions.each do |suggestion| %>
+    <%= render partial: 'suggestion', object: suggestion %>
+  <% end %>
+</div>
