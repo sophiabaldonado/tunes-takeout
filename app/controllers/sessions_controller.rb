@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  skip_before_action :require_login, only: [:create]
 
   def create
     auth_hash = request.env['omniauth.auth']
     user = User.find_or_create_from_omniauth(auth_hash)
-    # raise
     if user
       session[:user_id] = user.id
       redirect_to root_path

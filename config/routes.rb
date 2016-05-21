@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'suggestions#index'
 
   delete '/logout' => 'sessions#destroy', as: :logout
+
   get '/auth/:provider/callback' => 'sessions#create'
 
   get '/suggestions' =>  'suggestions#show'
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
   delete '/favorite' =>  'suggestions#unfavorite'
 
   resources :sessions, only: [:create, :destroy]
-  resources :users
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

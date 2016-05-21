@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     else
       self.find_by(uid: auth_hash["info"]["id"], provider: auth_hash["provider"])
     end
-    
+
     if user.nil?
       user = User.new
       user.name = auth_hash["info"]["display_name"]
