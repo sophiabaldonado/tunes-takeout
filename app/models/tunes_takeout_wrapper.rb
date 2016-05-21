@@ -1,6 +1,8 @@
 require 'json'
 
 class TunesTakeoutWrapper
+  # validate :search, presence: true, only: [:show]
+
   BASE_URL = "https://tunes-takeout-api.herokuapp.com"
   attr_reader :suggestions, :href
 
@@ -51,4 +53,12 @@ class TunesTakeoutWrapper
     HTTParty.delete(BASE_URL + "/v1/users/#{user_id}/favorites", { body: { "suggestion": suggestion_id }.to_json} )
   end
 
+  private
+  # def validate
+  #   if params[:search]
+  #     errors.add(:search, "can't be blank") if params[:search].blank?
+  #     # any other validations
+  #   end
+  # end
+  #
 end
