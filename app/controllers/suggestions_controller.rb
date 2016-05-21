@@ -56,27 +56,38 @@ class SuggestionsController < ApplicationController
   end
 
   def choose_correct_suggestions
-    search, limit = params[:search], params[:limit]
-    if search
-      tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
-      @suggestions = transform_suggestions(tunes_takeout_suggestions)
-    else
-      top_suggestions_ids = TunesTakeoutWrapper.top_twenty
-      top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
-      @suggestions = transform_suggestions(top_suggestions)
-    end
+    # fake suggestions for styling
+    @suggestions = transform_suggestions(fake_suggestions[:suggestions])
+
+
+    # search, limit = params[:search], params[:limit]
+    # if search && search != ""
+    #   tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
+    #   @suggestions = transform_suggestions(tunes_takeout_suggestions)
+    # elsif search != "" && current_page != "/"
+    #   render :index, notice: "Search cannot be blank"
+    # else
+    #   top_suggestions_ids = TunesTakeoutWrapper.top_twenty
+    #   top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
+    #   @suggestions = transform_suggestions(top_suggestions)
+    # end
   end
 
   def fake_suggestions
-  {
-    "href":"https://tunes-takeout-api.herokapp.com/v1/suggestions/VzoikPLQUk2WS7xp",
-    "suggestion":{
-      "id":"VzoikPLQUk2WS7xp",
-      "food_id":"ohana-seattle-2",
-      "music_id":"0BjkSCLEHlcsogSeDim01W",
-      "music_type":"track"
+    single_suggestion = {
+      "id" => "VzoikPLQUk2WS7xp",
+      "food_id" => "ohana-seattle-2",
+      "music_id" => "0BjkSCLEHlcsogSeDim01W",
+      "music_type" => "track"
     }
-  }
+
+    many_suggestions = {
+      "suggestions": [
+        single_suggestion,
+        single_suggestion,
+        single_suggestion
+      ]
+    }
   end
 
 end
