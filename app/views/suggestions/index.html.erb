@@ -1,14 +1,14 @@
 <h1>Home Page </h1>
 <%= "Hi, #{current_user.name}!" if current_user %>
 
-<%= form_tag :suggestions, {controller: 'suggestions', action: 'create'} do |f| %>
-  <%= label_tag :search %>
-  <%= text_field_tag :search %>
+<%= form_tag :suggestions, {controller: 'suggestions', action: 'create', class: "form-signin"} do |f| %>
+  <%= label_tag :search, "Search", class: "form-signin-heading sr-only" %>
+  <%= text_field_tag :search, nil, class: "form-control", placeholder: "Ice Cream" %>
 
-  <%= label_tag :number_of_results %>
-  <%= select_tag(:limit, options_for_select([['10', 10], ['20', 20], ['50', 50], ['100', 100]])) %>
+  <%= label_tag :number_of_results, "Number of suggestions", class: "sr-only" %>
+  <%= select_tag(:limit, options_for_select([['1', 1], ['5', 5], ['10', 10], ['20', 20], ['50', 50], ['100', 100], 10]), class: "form-control" ) %>
 
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Search", class:"btn btn-lg btn-primary btn-block") %>
 <% end %>
 
 <% @suggestions.each do |suggestion| %>
