@@ -88,8 +88,6 @@ class SuggestionsController < ApplicationController
         single_suggestion
       ]
     }
-
-
   end
 
 end

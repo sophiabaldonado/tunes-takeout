@@ -3,15 +3,6 @@ require 'rspotify'
 class Music
   attr_reader :name, :type, :links, :image, :embed
 
-  def initialize(spotify)
-    @name = "Deeply Disturbed"
-    @type = "album"
-    @links = {"spotify"=>"https://open.spotify.com/album/2BYEP9y3BNpbi1ueR3Bdmc"}
-    # unless @type == "track" || spotify.images.empty?
-      @image = "https://i.scdn.co/image/32f16048f6ae3269ff0875c53e843ea40e52fa77"
-    # end
-    @embed = "spotify:album:2BYEP9y3BNpbi1ueR3Bdmc"
-  end
   # def initialize(spotify)
   #   @name = spotify.name
   #   @type = spotify.type
@@ -21,6 +12,17 @@ class Music
   #   end
   #   @embed = spotify.uri
   # end
+
+  # fake music object for styling
+  def initialize(spotify)
+    @name = "Deeply Disturbed"
+    @type = "album"
+    @links = {"spotify"=>"https://open.spotify.com/album/2BYEP9y3BNpbi1ueR3Bdmc"}
+    # unless @type == "track" || spotify.images.empty?
+      @image = "https://i.scdn.co/image/32f16048f6ae3269ff0875c53e843ea40e52fa77"
+    # end
+    @embed = "spotify:album:2BYEP9y3BNpbi1ueR3Bdmc"
+  end
 
   def self.suggested_music(suggestion)
     self.search(suggestion["music_id"], suggestion["music_type"])
