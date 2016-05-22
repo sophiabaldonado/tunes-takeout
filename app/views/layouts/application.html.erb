@@ -30,7 +30,7 @@
         <% end %>
         <% if current_user %>
           <div class="navbar-right">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
               <li class="navbar-user-info navbar-text"><%= link_to current_user.name, "https://open.spotify.com/user/#{current_user.uid}" %></li>
               <li class="navbar-user-info user-img"><%= image_tag current_user.photo_url, class: "img-circle" %></li>
               <li class="navbar-user-info"><%= button_to 'Log Out', logout_path, method: :delete, class: "btn btn-primary" %></li>
