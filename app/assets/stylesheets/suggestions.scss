@@ -19,9 +19,29 @@
         height: 100%;
     }
 
-.address p {
-  margin: 0;
+/** Nav **/
+
+nav.navbar {
+  padding: 1rem 4rem;
 }
+
+.navbar-brand {
+  margin: 1rem auto;
+  font-size: 2.5rem;
+}
+
+form.navbar-right {
+  display: inline-block;
+  padding: 15px 15px;
+}
+
+.user-img {
+  width: 18%;
+  margin-right: 0.5rem;
+}
+
+
+/** Home **/
 
 .marketing .col-lg-4 {
     margin-bottom: 20px;
@@ -30,4 +50,11 @@
 
 .marketing .img-circle {
   width: 42%;
+}
+
+
+/** Suggestions Partial **/
+
+.address p {
+  margin: 0;
 }
