@@ -3,33 +3,43 @@
 <head>
   <title>TunesTakeout</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <section class="container">
     <header>
-      <nav class="navbar navbar-inverse navbar-fixed-top navbar-nav">
-        <h1 class="navbar-header navbar-brand">SoundChow</h1>
-        <li><%= link_to 'Home', root_path %></li>
+      <nav class="navbar navbar-inverse navbar-collapse">
+        <%= link_to root_path do %>
+          <h1 class="navbar-header navbar-brand">SoundChow</h1>
+        <% end %>
         <% if current_user %>
-          <%= link_to 'My Favorites', favorites_path %>
+        <ul class="nav navbar-nav">
+          <li class="navbar-text">
+            <%= link_to favorites_path do %>
+              <i class="fa fa-fire" aria-hidden="true"></i> My Favorites
+            <% end %>
+          </li>
+        </ul>
         <% else %>
         <div class="navbar-right">
-          <%= link_to 'Log In With Spotify', '/auth/spotify', class: "btn btn-success navbar-right" unless current_user %>
+          <ul class="nav navbar-nav">
+            <li class="navbar-user-info"><%= button_to 'Log In With Spotify', '/auth/spotify', class: "btn btn-success" unless current_user %></li>
+          </ul>
         </div>
         <% end %>
         <% if current_user %>
           <div class="navbar-right">
-            <%= button_to 'Log Out', logout_path, method: :delete, class: "btn btn-primary navbar-right" %>
-            <%= link_to "https://open.spotify.com/user/#{current_user.uid}" do %>
-            <%= image_tag current_user.photo_url, class: "img-circle user-img navbar-right" %>
-              <p class="navbar-right"><%= current_user.name %></p>
-            <% end %>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navbar-user-info navbar-text"><%= link_to current_user.name, "https://open.spotify.com/user/#{current_user.uid}" %></li>
+              <li class="navbar-user-info user-img"><%= image_tag current_user.photo_url, class: "img-circle" %></li>
+              <li class="navbar-user-info"><%= button_to 'Log Out', logout_path, method: :delete, class: "btn btn-primary" %></li>
+            </ul>
           </div>
         <% end %>
       </nav>
     </header>
+    <section class="container">
 
     <%= yield %>
   </section>
