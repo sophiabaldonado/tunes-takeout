@@ -6,11 +6,11 @@
     <h2><%= link_to food.name, food.link %></h2>
     <%= image_tag food.rating[:stars] %><%= food.rating[:rating] %>
     <p><%= link_to food.phone, tel:food.phone %></p>
-    <% if food.address.cross_streets %>
-      <div class="address"><%= food.address.cross_streets %></div>
+    <% if food.cross_streets %>
+      <div class="address"><%= food.cross_streets %></div>
     <% else %>
       <div class="address">
-        <% food.address.display_address.each do |add| %>
+        <% food.display_address.each do |add| %>
           <p><%= add %></p>
         <% end %>
       </div>
