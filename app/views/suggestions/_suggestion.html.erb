@@ -1,41 +1,57 @@
 <% food = suggestion[:food] %>
 <% music = suggestion[:music] %>
 
-<div class="col-lg-4">
-    <%= image_tag food.image, class: "img-circle" %>
-    <h2><%= link_to food.name, food.link %></h2>
-    <%= image_tag food.rating[:stars] %><%= food.rating[:rating] %>
-    <p><%= link_to food.phone, tel:food.phone %></p>
-    <% if food.cross_streets %>
-      <div class="address"><%= food.cross_streets %></div>
-    <% else %>
-      <div class="address">
-        <% food.display_address.each do |add| %>
-          <p><%= add %></p>
+<div class="col-lg-6 suggestion">
+    <div class="col-lg-6">
+      <%= image_tag food.image, class: "img-circle" %>
+    </div>
+    <div class="col-lg-6">
+
+      <% if current_user %>
+        <% if user_favorited?(suggestion[:id]) %>
+          <%= form_tag favorite_path(params), method: "delete" do %>
+            <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+            <%= button_tag do %>
+              <i class="fav fa fa-fire" aria-hidden="true"></i> Unfav
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= form_tag favorite_path(params), method: "post" do %>
+            <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
+            <%= button_tag do %>
+              <i class="fav outline fa fa-fire" aria-hidden="true"></i> Fav
+            <% end %>
+          <% end %>
         <% end %>
-      </div>
-    <% end %>
-    <%= link_to music.name, music.links["spotify"] %>
-      <% if music.image %>
-        <%# image_tag music.image %>
       <% end %>
+
+      <h2>
+        <%= link_to food.link do %>
+          <i class="fa fa-spoon" aria-hidden="true"></i> <%= food.name.capitalize %>
+        <% end %>
+      </h2>
+      <%= image_tag food.rating[:stars] %> <%= food.rating[:rating] %>
+      <p><%= link_to food.phone, tel:food.phone %></p>
+      <% if food.cross_streets %>
+        <div class="address"><%= food.cross_streets %></div>
+      <% else %>
+        <div class="address">
+          <% food.display_address.each do |add| %>
+            <p><%= add %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="music-info">
+      <%= link_to music.links["spotify"] do %>
+        <h2><i class="fa fa-music" aria-hidden="true"></i> <%= music.name %></h2>
+      <% end %>
+        <% if music.image %>
+          <%# image_tag music.image %>
+        <% end %>
 
       <div class='embed-container'>
         <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
       </div>
-
-
-  <% if current_user %>
-    <% if user_favorited?(suggestion[:id]) %>
-      <%= form_tag favorite_path(params), method: "delete" do %>
-        <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-        <%= submit_tag "UnFav" %>
-      <% end %>
-    <% else %>
-      <%= form_tag favorite_path(params), method: "post" do %>
-        <%= hidden_field :suggestion_id, "suggestion_id", {value: suggestion[:id]} %>
-        <%= submit_tag "Fav" %>
-      <% end %>
-    <% end %>
-  <% end %>
+    </div>
 </div>

@@ -2,23 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.embed-container {
-    position: relative;
-    padding-bottom: 15%;
-    overflow: hidden;
-    max-width: 25%;
-    height: auto;
-}
-    .embed-container iframe,
-    .embed-container object,
-    .embed-container embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
 a {
   color: #C26244;
 }
@@ -94,18 +77,65 @@ div.search {
   text-indent: 46%;
 }
 
-.marketing .col-lg-4 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.marketing .img-circle {
-  width: 42%;
-}
 
 
 /** Suggestions Partial **/
 
+.suggestion {
+  padding: 7rem;
+}
+
+.suggestion > div {
+  margin: 1rem auto;
+}
+
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  // text-align: center;
+}
+
+.marketing .img-circle {
+  width: 100%;
+}
+
+.fav {
+  font-size: 3rem;
+}
+
+.outline {
+  color: black;
+     -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+     -webkit-text-stroke-width: 1px;
+     -webkit-text-stroke-color: black;
+}
+
 .address p {
   margin: 0;
 }
+
+.music-info {
+  clear: both;
+}
+
+.music-info a {
+  display: block;
+}
+
+.embed-container {
+    position: relative;
+    padding-bottom: 15%;
+    overflow: hidden;
+    max-width: 100%;
+    min-height: 8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+    .embed-container iframe,
+    .embed-container object,
+    .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
