@@ -19,6 +19,15 @@
         height: 100%;
     }
 
+a {
+  color: #C26244;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #7C3721;
+}
+
 /** Nav **/
 
 nav.navbar {
@@ -64,6 +73,26 @@ form.navbar-right {
 
 
 /** Home **/
+
+.jumbotron {
+  text-align: center;
+  color: #C26244;
+}
+
+div.search {
+  width: 35%;
+  margin: 2rem auto;
+}
+
+.search .form-control {
+  height: 43px;
+  font-size: 17px;
+  margin-bottom: 2rem;
+}
+
+.search select {
+  text-indent: 46%;
+}
 
 .marketing .col-lg-4 {
     margin-bottom: 20px;

@@ -1,16 +1,17 @@
-<%= "Hi, #{current_user.name}!" if current_user %>
-
 <div class="jumbotron">
   <h1>Welcome to SoundChow</h1>
+  <p>Tote bag master cleanse godard bushwick ramps next level. Typewriter twee waistcoat, tattooed sriracha hella food truck yr single-origin coffee man braid narwhal chambray bushwick normcore.</p>
+  <div class="search">
   <%= form_tag :suggestions, {controller: 'suggestions', action: 'create', class: "form-signin"} do |f| %>
-    <%= label_tag :search, "Search", class: "form-signin-heading sr-only" %>
+    <%= label_tag :search, "Search for Suggestions", class: "form-signin-heading" %>
     <%= text_field_tag :search, nil, class: "form-control", placeholder: "Ice Cream" %>
 
-    <%= label_tag :number_of_results, "Number of suggestions", class: "sr-only" %>
-    <%= select_tag(:limit, options_for_select([['1', 1], ['5', 5], ['10', 10], ['20', 20], ['50', 50], ['100', 100], 10]), class: "form-control" ) %>
+    <%= label_tag :number_of_results, "Number of Suggestions", class: "" %>
+    <%= select_tag(:limit, options_for_select(['1', '5', '10', '20', '50', '100'], '10'), class: "form-control" ) %>
 
     <%= submit_tag("Search", class:"btn btn-lg btn-primary btn-block") %>
   <% end %>
+</div>
 </div>
 
 <div class="row marketing">
