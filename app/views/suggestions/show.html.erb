@@ -1,3 +1,11 @@
+<% if current_page == '/favorites' %>
+  <h1 class="page-title"><i class="fa fa-fire" aria-hidden="true"></i> My Favs</h1>
+<% elsif @limit == "1" %>
+  <h1 class="page-title"></i><%= @limit %> Suggestion for <%= @search %></h1>
+<% else %>
+  <h1 class="page-title"></i><%= @limit %> Suggestions for <%= @search %></h1>
+<% end %>
+
 <div class="row marketing">
   <% @suggestions.each do |suggestion| %>
       <%= render partial: 'suggestion', object: suggestion %>

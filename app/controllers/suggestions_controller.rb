@@ -7,6 +7,8 @@ class SuggestionsController < ApplicationController
 
   def show
     choose_correct_suggestions
+    @search = params[:search]
+    @limit = params[:limit]
 
     if @suggestions.nil?
       redirect_to root_path, notice: "No matches for #{params["search"]}!"
@@ -25,19 +27,17 @@ class SuggestionsController < ApplicationController
   end
 
   def favorite
-    suggestion_id = params[:suggestion_id]["suggestion_id"]
+    suggestion_id = params[:suggestion_id]
     user_id = current_user.uid
     TunesTakeoutWrapper.favorite(user_id, suggestion_id)
-    choose_correct_suggestions
-    render current_page
+    redirect_to favorites_path
   end
 
   def unfavorite
-    suggestion_id = params[:suggestion_id]["suggestion_id"]
+    suggestion_id = params[:suggestion_id]
     user_id = current_user.uid
     TunesTakeoutWrapper.unfavorite(user_id, suggestion_id)
-    choose_correct_suggestions
-    render current_page
+    redirect_to favorites_path
   end
 
   private
@@ -64,8 +64,6 @@ class SuggestionsController < ApplicationController
     # if search && search != ""
     #   tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
     #   @suggestions = transform_suggestions(tunes_takeout_suggestions)
-    # elsif search != "" && current_page != "/"
-    #   render :index, notice: "Search cannot be blank"
     # else
     #   top_suggestions_ids = TunesTakeoutWrapper.top_twenty
     #   top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
