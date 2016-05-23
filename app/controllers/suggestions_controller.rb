@@ -27,14 +27,14 @@ class SuggestionsController < ApplicationController
   end
 
   def favorite
-    suggestion_id = params[:suggestion_id]
+    suggestion_id = params[:suggestion_id]["suggestion_id"]
     user_id = current_user.uid
     TunesTakeoutWrapper.favorite(user_id, suggestion_id)
     redirect_to favorites_path
   end
 
   def unfavorite
-    suggestion_id = params[:suggestion_id]
+    suggestion_id = params[:suggestion_id]["suggestion_id"]
     user_id = current_user.uid
     TunesTakeoutWrapper.unfavorite(user_id, suggestion_id)
     redirect_to favorites_path
