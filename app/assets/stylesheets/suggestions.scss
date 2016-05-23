@@ -124,6 +124,7 @@ div.search {
 }
 
 .food-info {
+  min-height: 16rem;
   padding: 1rem;
   background-color: #fff;
   border: 0.025rem solid #B8B4B4;
@@ -157,6 +158,10 @@ div.search {
 
 .food-title {
   padding-right: 0;
+}
+
+.address {
+  margin-top: 1rem;
 }
 
 .address p {
