@@ -3,18 +3,18 @@ require 'yelp'
 class Food
   attr_reader :name, :link, :phone, :display_address, :cross_streets, :image, :rating
 
-  def initialize(business)
-    @name = business.name
-    @link = business.url
-    @phone = business.display_phone
-    @display_address = business.location.display_address
-    @cross_streets = business.location.cross_streets
-    @image = business.image_url
-    @rating = {
-      rating: business.rating,
-      stars: business.rating_img_url
-    }
-  end
+  # def initialize(business)
+  #   @name = business.name
+  #   @link = business.url
+  #   @phone = business.display_phone
+  #   @display_address = business.location.display_address
+  #   @cross_streets = business.location.cross_streets
+  #   @image = business.image_url
+  #   @rating = {
+  #     rating: business.rating,
+  #     stars: business.rating_img_url
+  #   }
+  # end
 
   # fake food object for styling
   def initialize(business)

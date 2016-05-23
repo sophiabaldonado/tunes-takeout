@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h1>Welcome to SoundChow</h1>
-  <p>Tote bag master cleanse godard bushwick ramps next level. Typewriter twee waistcoat, tattooed sriracha hella food truck yr single-origin coffee man braid narwhal chambray bushwick normcore.</p>
+  <p>Perfectly curated listening experiences based on your personal tastes.</p>
   <div class="search">
   <%= form_tag :suggestions, {controller: 'suggestions', action: 'create', class: "form-signin"} do |f| %>
     <%= label_tag :search, "Search for Suggestions", class: "form-signin-heading" %>
@@ -14,7 +14,7 @@
 </div>
 </div>
 
-<h1>Top 20 Suggestions of All Time
+<h1 class="page-title">Top 20 Suggestions of All Time</h1>
 
 <div class="row marketing">
   <% @suggestions.each do |suggestion| %>

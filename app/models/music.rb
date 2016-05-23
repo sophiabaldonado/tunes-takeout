@@ -29,16 +29,16 @@ class Music
   end
 
   def self.search(id, music_type)
-    # music = case music_type
-    # when "artist"
-    #   RSpotify::Artist.find(id)
-    # when "album"
-    #   RSpotify::Album.find(id)
-    # when "track"
-    #   RSpotify::Track.find(id)
-    # else
-    #   nil
-    # end
+  #   music = case music_type
+  #   when "artist"
+  #     RSpotify::Artist.find(id)
+  #   when "album"
+  #     RSpotify::Album.find(id)
+  #   when "track"
+  #     RSpotify::Track.find(id)
+  #   else
+  #     nil
+  #   end
     music = "fake"
     self.new(music)
   end
