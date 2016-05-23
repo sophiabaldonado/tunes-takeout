@@ -1,12 +1,24 @@
 <% food = suggestion[:food] %>
 <% music = suggestion[:music] %>
 
-<div class="col-lg-6 suggestion">
-    <div class="col-lg-6">
-      <%= image_tag food.image, class: "img-circle" %>
+<div class="col-lg-4 suggestion">
+  <div class="music-info">
+    <div class="music-title">
+      <%= link_to music.links["spotify"] do %>
+        <h4><i class="fa fa-music" aria-hidden="true"></i> <%= display_music_name(music.name) %></h4>
+      <% end %>
     </div>
-    <div class="col-lg-6">
 
+    <div class='embed-container'>
+      <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
+      <% if music.image %>
+        <%= image_tag music.image %>
+      <% end %>
+    </div>
+  </div>
+  <div class="food-info">
+    <div class="col-lg-4">
+      <%= image_tag food.image, class: "img-circle food-img" %>
       <% if current_user %>
         <% if user_favorited?(suggestion[:id]) %>
           <%= form_tag favorite_path(params), method: "delete" do %>
@@ -25,13 +37,17 @@
         <% end %>
       <% end %>
 
-      <h2>
+    </div>
+    <div class="col-lg-8 food-title">
+      <h4>
         <%= link_to food.link do %>
-          <i class="fa fa-spoon" aria-hidden="true"></i> <%= food.name.capitalize %>
+          <i class="fa fa-spoon" aria-hidden="true"></i> <%= display_food_name(food.name.capitalize) %>
         <% end %>
-      </h2>
+      </h4>
       <%= image_tag food.rating[:stars] %> <%= food.rating[:rating] %>
-      <p><%= link_to food.phone, tel:food.phone %></p>
+      <% unless food.phone.nil? %>
+        <p><%= link_to food.phone, tel:food.phone %></p>
+      <% end %>
       <% if food.cross_streets %>
         <div class="address"><%= food.cross_streets %></div>
       <% else %>
@@ -42,16 +58,5 @@
         </div>
       <% end %>
     </div>
-    <div class="music-info">
-      <%= link_to music.links["spotify"] do %>
-        <h2><i class="fa fa-music" aria-hidden="true"></i> <%= music.name %></h2>
-      <% end %>
-        <% if music.image %>
-          <%# image_tag music.image %>
-        <% end %>
-
-      <div class='embed-container'>
-        <iframe src="<%= "https://embed.spotify.com/?uri=#{music.embed}" %>" frameborder='0' allowtransparency='true'></iframe>
-      </div>
-    </div>
+  </div>
 </div>

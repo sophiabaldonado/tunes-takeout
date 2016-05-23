@@ -57,18 +57,18 @@ class SuggestionsController < ApplicationController
 
   def choose_correct_suggestions
     # fake suggestions for styling
-    @suggestions = transform_suggestions(fake_suggestions[:suggestions])
+    # @suggestions = transform_suggestions(fake_suggestions[:suggestions])
 
 
-    # search, limit = params[:search], params[:limit]
-    # if search && search != ""
-    #   tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
-    #   @suggestions = transform_suggestions(tunes_takeout_suggestions)
-    # else
-    #   top_suggestions_ids = TunesTakeoutWrapper.top_twenty
-    #   top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
-    #   @suggestions = transform_suggestions(top_suggestions)
-    # end
+    search, limit = params[:search], params[:limit]
+    if search && search != ""
+      tunes_takeout_suggestions = TunesTakeoutWrapper.search(search, limit).suggestions
+      @suggestions = transform_suggestions(tunes_takeout_suggestions)
+    else
+      top_suggestions_ids = TunesTakeoutWrapper.top_twenty
+      top_suggestions = TunesTakeoutWrapper.find_many(top_suggestions_ids).suggestions
+      @suggestions = transform_suggestions(top_suggestions)
+    end
   end
 
   def fake_suggestions

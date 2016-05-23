@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h1>Welcome to SoundChow</h1>
-  <p>Perfectly curated listening experiences based on your personal tastes.</p>
+  <span class="sans-font"><p>Perfectly curated listening experiences paired with your personal tastes.</p></span>
   <div class="search">
   <%= form_tag :suggestions, {controller: 'suggestions', action: 'create', class: "form-signin"} do |f| %>
     <%= label_tag :search, "Search for Suggestions", class: "form-signin-heading" %>
