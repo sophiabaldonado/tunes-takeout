@@ -30,6 +30,7 @@ class SuggestionsController < ApplicationController
     suggestion_id = params[:suggestion_id]["suggestion_id"]
     user_id = current_user.uid
     TunesTakeoutWrapper.favorite(user_id, suggestion_id)
+    raise
     redirect_to favorites_path
   end
 
